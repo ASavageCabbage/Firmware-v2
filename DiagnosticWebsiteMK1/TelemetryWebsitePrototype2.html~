@@ -1,0 +1,466 @@
+<html>
+
+	<!--Author: Telemetry Team, UBC Solar-->
+
+	<head>
+		<title>UBC Solar Telemetry </title>
+		<link rel="icon" href="C:\Users\David Widjaja\Documents\UBC_SOLAR\DiagnosticWebsiteMK1/TabHead.PNG">
+		<link rel="stylesheet" type="text/css" href="TelemetryWebsitePrototype2Formatting.css">
+		<script src="TelemetryWebsitePrototyps2.js"></script>
+	</head>
+	
+	<body onload="MainUpdater()">
+		<header id="Header1">
+			<h1 id="pagetitle">UBC Solar Telemetry</h1>
+			<h2 id="pagetitlesub">Version 0.0.1</h2>
+		</header>
+			
+		<img src="logo2.png" alt=""id="Headerpic">		
+		
+		<!---MAIN TABLE WITH KEY DIAGNOSTIC INFORMATION -->
+		<table id="KeyTable">
+			<tr>
+				<td colspan="3" id="SubTableHeader"><h2>Key Information</h2></td>							
+			</tr>
+			<tr>
+				<td><b><p id="CANMessage"></p></b></td>
+				<td><b><p id="LeftSignal"></p></b></td>
+				<td><b><p id="RightSignal"></p></b></td>		
+			</tr>
+			<tr>
+				<td><b><p id="Acceleration"></p></b></td>
+				<td><b><p id="Regeneration"></p></b></td> 
+				<td><b><p id="Direction"></p></b></td>			
+			</tr>
+			<tr>
+				<td><b><p id="Status"></p></b></td>
+				<td colspan="2"><b><p id="ErrorMessage"></p></b></td>
+			</tr>
+		</table>
+		<!---MAIN TABLE WITH KEY DIAGNOSTIC INFORMATION ENDS-->
+		
+		
+		<!---	SUB MAIN TABLE1 WITH OTHER IMPORTANT KEY FACTS-->
+		<table id="SubKeyTable1">
+			<tr>
+				<td colspan="3" id="SubTableHeader"><h2>States</h2></td>							
+			</tr>
+			<tr>
+				<td><b><p id="StateOfCharge"></p></b></td>
+				<td><b><p id="MainVoltage"></p></b></td>
+				<td><b><p id="Brake"></p></b></td>
+			</tr>			
+			<tr>
+				<td colspan="2"><b><p id="AuxVoltage"></p></b></td>
+				<td><b><p id="Hazard"></p></b></td>
+			</tr>			
+		</table>		<!---	SUB MAIN TABLE1 WITH OTHER IMPORTANT KEY FACTS ENDS-->
+		
+		
+		<!-- SUB MAIN TABLE2.1 WITH OTHER IMPORTANT KEY FACTS-->
+		<table id="SubKeyTable2p1">
+			<tr>
+				<td colspan="2" id="SubTableHeader"><h2>Main Current</h2></td>							
+			</tr>
+			<tr>
+				<td colspan="2"><b><p id="MainCurrent"></p></b></td>				
+			</tr>
+			<tr>
+				<td><b><p id="PeakCurrent"></p></b></td>	
+				<td><b><p id="Peak time"></p></b><button onclick="ResetMainCurrent()">Reset</button></td>
+			</tr>
+		</table>
+		<!-- SUB MAIN TABLE2.1 WITH OTHER IMPORTANT KEY FACTS ENDS-->
+		
+		<!--PLACEHOLDER-->
+		<table id="Placeholder">
+			<tr>
+				<td><p>PAGE UNDER CONSTRUCTION</p></td>
+			</tr>				
+		</table>
+		<!--PLACEHOLDER ENDS-->
+		
+		
+		<!-- SUB MAIN TABLE2.2 WITH OTHER IMPORTANT KEY FACTS-->
+		<table id="SubKeyTable2p2">
+			<tr>
+				<td colspan="2" id="SubTableHeader"><h2>Main Temp</h2></td>							
+			</tr>
+			<tr>
+				<td colspan="2"><b><p id="MainTemperature"></p></b></td>				
+			</tr>
+			<tr>
+				<td><b><p id="PeakTemperature"></p></b></td>	
+				<td><b><p id="Peak time"></p></b><button onclick="ResetMainTemperature()">Reset</button></td>
+			</tr>		
+		</table>		<!-- SUB MAIN TABLE2.2 WITH OTHER IMPORTANT KEY FACTS ENDS -->
+
+
+		<!-- MPPT CURRENT INFORMATION -->
+		<table id="MPPTCurrent">
+							<tr>
+								<td colspan="5" id="SubTableHeader"><h2>MPPT Current</h2></td>							
+							</tr>
+							<tr>
+								<th><b>Sensor</b></th>		
+								<td><b>Current</b></td>
+								<td><b>Peak</b></td>		
+								<td><b>Peak Time</b></td>
+								<td><b>Reset</b></td>			
+							</tr>
+							<tr>
+								<th>0</th>
+								<td>na</td>
+								<td>na</td>
+								<td>na</td>
+								<td><button>Reset</button></td>
+							</tr>
+							<tr>
+								<th>1</th>
+								<td>na</td>
+								<td>na</td>
+								<td>na</td>
+								<td><button>Reset</button></td>
+							</tr>
+							<tr>
+								<th>2</th>
+								<td>na</td>
+								<td>na</td>
+								<td>na</td>
+								<td><button>Reset</button></td>
+							</tr>
+							<tr>
+								<th>3</th>
+								<td>na</td>
+								<td>na</td>
+								<td>na</td>
+								<td><button>Reset</button></td>
+							</tr>
+							<tr>
+								<th>4</th>
+								<td>na</td>
+								<td>na</td>
+								<td>na</td>
+								<td><button>Reset</button></td>
+							</tr>
+							<tr>
+								<th>5</th>
+								<td>na</td>
+								<td>na</td>
+								<td>na</td>
+								<td><button>Reset</button></td>
+							</tr>
+						</table>
+		<!-- MPPT CURRENT INFORMATION ENDS-->
+		
+		
+		<!--MPPT TEMPERATURE INFORMATION-->
+		<table id="MPPTTemperature">
+							<tr>
+								<td colspan="5" id="SubTableHeader"><h2>MPPT Temperature</h2></td>							
+							</tr>
+							<tr>
+								<th>Sensor</th>		
+								<th>Temperature</th>
+								<th>Peak</th>		
+								<th>Peak Time</th>
+								<th>Reset</th>				
+							</tr>
+							<tr>
+								<th>0</th>
+								<td>na</td>
+								<td>na</td>
+								<td>na</td>
+								<td><button>Reset</button></td>
+							</tr>
+							<tr>
+								<th>1</th>
+								<td>na</td>
+								<td>na</td>
+								<td>na</td>
+								<td><button>Reset</button></td>
+							</tr>
+							<tr>
+								<th>2</th>
+								<td>na</td>
+								<td>na</td>
+								<td>na</td>
+								<td><button>Reset</button></td>
+							</tr>
+							<tr>
+								<th>3</th>
+								<td>na</td>
+								<td>na</td>
+								<td>na</td>
+								<td><button>Reset</button></td>
+							</tr>
+							<tr>
+								<th>4</th>
+								<td>na</td>
+								<td>na</td>
+								<td>na</td>
+								<td><button>Reset</button></td>
+							</tr>
+							<tr>
+								<th>5</th>
+								<td>na</td>
+								<td>na</td>
+								<td>na</td>
+								<td><button>Reset</button></td>
+							</tr>
+							<tr>
+								<th>6</th>
+								<td>na</td>
+								<td>na</td>
+								<td>na</td>
+								<td><button>Reset</button></td>
+							</tr>
+							<tr>
+								<th>7</th>
+								<td>na</td>
+								<td>na</td>
+								<td>na</td>
+								<td><button>Reset</button></td>
+							</tr>
+							<tr>
+								<th>8</th>
+								<td>na</td>
+								<td>na</td>
+								<td>na</td>
+								<td><button>Reset</button></td>
+							</tr>
+							<tr>
+								<th>9</th>
+								<td>na</td>
+								<td>na</td>
+								<td>na</td>
+								<td><button>Reset</button></td>
+							</tr>
+						</table>		<!--MPPT TEMPERATURE INFORMATION ENDS-->
+
+
+		<!-- BATTERY PACKS INFORMATION -->
+		<table id="BatteryPack1">
+							<tr>
+								<td colspan="6" id="SubTableHeader"><h2>Battery Pack 1</h2></td>							
+							</tr>
+							<tr>
+								<td><b>Cell</b></td>
+								<td><b>Voltage</b></td>
+								<td colspan="2"><b>Volt Warning</b></td>
+								<td colspan="2"><b>Shun Warning</b></td>
+							</tr>
+							<tr>
+								<th>0</th>
+								<td>na</td>
+								<td colspan="2">na</td>
+								<td colspan="2">na</td>
+							</tr>
+							<tr>
+								<th>1</th>
+								<td>na</td>
+								<td colspan="2">na</td>
+								<td colspan="2">na</td>
+							</tr>
+							<tr>
+								<th>2</th>
+								<td>na</td>
+								<td colspan="2">na</td>
+								<td colspan="2">na</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td><b>Temp.</b></td>
+								<td><b>Warning</b></td>
+								<td><b>Peak</b></td>
+								<td><b>Time of Peak</b></td>
+								<td><b>Reset Peak</b></td>
+							</tr>
+							<tr>
+								<th>Temp1: </th>
+								<td>na</td>
+								<td>na</td>
+								<td>na</td>
+								<td>na</td>
+								<td><button>Reset</button></td>
+							</tr>
+							<tr>
+								<th>Temp2: </th>
+								<td>na</td>
+								<td>na</td>
+								<td>na</td>
+								<td>na</td>
+								<td><button>Reset</button></td>
+							</tr>
+		</table>
+		
+		<table id="BatteryPack2">
+							<tr>
+								<td colspan="6" id="SubTableHeader"><h2>Battery Pack 2</h2></td>							
+							</tr>
+							<tr>
+								<td><b>Cell</b></td>
+								<td><b>Voltage</b></td>
+								<td colspan="2"><b>Volt Warning</b></td>
+								<td colspan="2"><b>Shun Warning</b></td>
+							</tr>
+							<tr>
+								<th>0</th>
+								<td>na</td>
+								<td colspan="2">na</td>
+								<td colspan="2">na</td>
+							</tr>
+							<tr>
+								<th>1</th>
+								<td>na</td>
+								<td colspan="2">na</td>
+								<td colspan="2">na</td>
+							</tr>
+							<tr>
+								<th>2</th>
+								<td>na</td>
+								<td colspan="2">na</td>
+								<td colspan="2">na</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td><b>Temp.</b></td>
+								<td><b>Warning</b></td>
+								<td><b>Peak</b></td>
+								<td><b>Time of Peak</b></td>
+								<td><b>Reset Peak</b></td>
+							</tr>
+							<tr>
+								<th>Temp1: </th>
+								<td>na</td>
+								<td>na</td>
+								<td>na</td>
+								<td>na</td>
+								<td><button>Reset</button></td>
+							</tr>
+							<tr>
+								<th>Temp2: </th>
+								<td>na</td>
+								<td>na</td>
+								<td>na</td>
+								<td>na</td>
+								<td><button>Reset</button></td>
+							</tr>
+		</table>
+		
+		<table id="BatteryPack3">
+							<tr>
+								<td colspan="6" id="SubTableHeader"><h2>Battery Pack 3</h2></td>							
+							</tr>
+							<tr>
+								<td><b>Cell</b></td>
+								<td><b>Voltage</b></td>
+								<td colspan="2"><b>Volt Warning</b></td>
+								<td colspan="2"><b>Shun Warning</b></td>
+							</tr>
+							<tr>
+								<th>0</th>
+								<td>na</td>
+								<td colspan="2">na</td>
+								<td colspan="2">na</td>
+							</tr>
+							<tr>
+								<th>1</th>
+								<td>na</td>
+								<td colspan="2">na</td>
+								<td colspan="2">na</td>
+							</tr>
+							<tr>
+								<th>2</th>
+								<td>na</td>
+								<td colspan="2">na</td>
+								<td colspan="2">na</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td><b>Temp.</b></td>
+								<td><b>Warning</b></td>
+								<td><b>Peak</b></td>
+								<td><b>Time of Peak</b></td>
+								<td><b>Reset Peak</b></td>
+							</tr>
+							<tr>
+								<th>Temp1: </th>
+								<td>na</td>
+								<td>na</td>
+								<td>na</td>
+								<td>na</td>
+								<td><button>Reset</button></td>
+							</tr>
+							<tr>
+								<th>Temp2: </th>
+								<td>na</td>
+								<td>na</td>
+								<td>na</td>
+								<td>na</td>
+								<td><button>Reset</button></td>
+							</tr>
+		</table>
+		
+		<table id="BatteryPack4">				
+		<!-- BATTERY PACKS INFORMATION ENDS -->
+							<tr>
+								<td colspan="6" id="SubTableHeader"><h2>Battery Pack 4</h2></td>							
+							</tr>
+
+							<tr>
+								<td><b>Cell</b></td>
+								<td><b>Voltage</b></td>
+								<td colspan="2"><b>Volt Warning</b></td>
+								<td colspan="2"><b>Shun Warning</b></td>
+							</tr>
+							<tr>
+								<td>0</td>
+								<td>na</td>
+								<td colspan="2">na</td>
+								<td colspan="2">na</td>
+							</tr>
+							<tr>
+								<td>1</td>
+								<td>na</td>
+								<td colspan="2">na</td>
+								<td colspan="2">na</td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>na</td>
+								<td colspan="2">na</td>
+								<td colspan="2">na</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td><b>Temp.</b></td>
+								<td><b>Warning</b></td>
+								<td><b>Peak</b></td>
+								<td><b>Time of Peak</b></td>
+								<td><b>Reset Peak</b></td>
+							</tr>
+							<tr>
+								<th>Temp1: </th>
+								<td>na</td>
+								<td>na</td>
+								<td>na</td>
+								<td>na</td>
+								<td><button>Reset</button></td>
+							</tr>
+							<tr>
+								<th>Temp2: </th>
+								<td>na</td>
+								<td>na</td>
+								<td>na</td>
+								<td>na</td>
+								<td><button>Reset</button></td>
+							</tr>
+		</table>
+		
+			<img src="logo2.png" alt="" id="FooterPic">
+
+						
+	</body>
+
+</html>
