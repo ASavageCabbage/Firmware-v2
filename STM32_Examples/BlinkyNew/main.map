@@ -1,0 +1,407 @@
+Archive member included to satisfy reference by file (symbol)
+
+C:\Program Files\6 2017-q1-update\lib\gcc\arm-none-eabi\6.3.1\thumb\v6-m\libgcc.a(_divsi3.o)
+                              serial.o (__aeabi_idiv)
+C:\Program Files\6 2017-q1-update\lib\gcc\arm-none-eabi\6.3.1\thumb\v6-m\libgcc.a(_dvmd_tls.o)
+                              C:\Program Files\6 2017-q1-update\lib\gcc\arm-none-eabi\6.3.1\thumb\v6-m\libgcc.a(_divsi3.o) (__aeabi_idiv0)
+C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-reent.o)
+                              newlib_stubs.o (errno)
+C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-impure.o)
+                              C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-reent.o) (_impure_ptr)
+C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-nano-freer.o)
+                              C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-reent.o) (_free_r)
+C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-nano-mallocr.o)
+                              C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-nano-freer.o) (__malloc_free_list)
+C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-sbrkr.o)
+                              C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-nano-mallocr.o) (_sbrk_r)
+C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-mlock.o)
+                              C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-nano-freer.o) (__malloc_lock)
+
+Allocating common symbols
+Common symbol       size              file
+
+errno               0x4               C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-reent.o)
+ComError            0x4               serial.o
+ComRXBuffer         0x4c              serial.o
+ComTXBuffer         0x4c              serial.o
+ComOpen             0x4               serial.o
+ComBusy             0x4               serial.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+flash            0x08000000         0x00010000
+ram              0x20000000         0x00002000
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD main.o
+LOAD serial.o
+LOAD startup.o
+LOAD newlib_stubs.o
+START GROUP
+LOAD C:\Program Files\6 2017-q1-update\lib\gcc\arm-none-eabi\6.3.1\thumb\v6-m\libgcc.a
+LOAD C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a
+LOAD C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libm.a
+END GROUP
+
+.text           0x08000000      0xee8
+ *(.vectors)
+ .vectors       0x08000000       0xc0 startup.o
+                0x08000000                Vectors
+ *(.after_vectors*)
+ .after_vectors
+                0x080000c0       0x28 startup.o
+                0x080000c0                ResetInit
+ *(.text*)
+ .text          0x080000e8       0x74 main.o
+                0x080000e8                delay
+                0x08000104                main
+ .text          0x0800015c      0x4f8 serial.o
+                0x0800015c                ReadCom
+                0x080001d0                WriteCom
+                0x08000270                initUART
+                0x080003b8                isr_usart1
+                0x080003e4                usart_rx
+                0x08000414                usart_tx
+                0x0800048c                PutBuf
+                0x080004ea                GetBuf
+                0x0800053c                GetBufCount
+                0x08000550                eputs
+                0x0800058c                eputc
+                0x080005aa                egetc
+                0x080005c4                egets
+ .text          0x08000654      0x148 startup.o
+                0x080006c8                initClock
+                0x08000774                Default_Handler
+                0x08000788                Hard_Fault_Handler
+ .text          0x0800079c      0x2ac newlib_stubs.o
+                0x0800079c                _exit
+                0x080007a6                _close
+                0x080007ba                _execve
+                0x080007dc                _fork
+                0x080007f4                _fstat
+                0x08000810                _getpid
+                0x0800081c                _kill
+                0x0800083c                _link
+                0x0800085c                _lseek
+                0x08000872                _stat
+                0x0800088e                _times
+                0x080008a2                _unlink
+                0x080008c0                _wait
+                0x080008e0                _isatty
+                0x08000908                _sbrk
+                0x08000978                _read
+                0x080009f4                _write
+ .text          0x08000a48      0x1d4 C:\Program Files\6 2017-q1-update\lib\gcc\arm-none-eabi\6.3.1\thumb\v6-m\libgcc.a(_divsi3.o)
+                0x08000a48                __divsi3
+                0x08000a48                __aeabi_idiv
+                0x08000c14                __aeabi_idivmod
+ .text          0x08000c1c        0x4 C:\Program Files\6 2017-q1-update\lib\gcc\arm-none-eabi\6.3.1\thumb\v6-m\libgcc.a(_dvmd_tls.o)
+                0x08000c1c                __aeabi_idiv0
+                0x08000c1c                __aeabi_ldiv0
+ .text          0x08000c20        0x0 C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-reent.o)
+ .text.cleanup_glue
+                0x08000c20       0x1a C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-reent.o)
+                0x08000c20                cleanup_glue
+ *fill*         0x08000c3a        0x2 
+ .text._reclaim_reent
+                0x08000c3c       0xcc C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-reent.o)
+                0x08000c3c                _reclaim_reent
+ .text          0x08000d08        0x0 C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-impure.o)
+ .text          0x08000d08        0x0 C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-nano-freer.o)
+ .text._free_r  0x08000d08       0x94 C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-nano-freer.o)
+                0x08000d08                _free_r
+ .text          0x08000d9c        0x0 C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-nano-mallocr.o)
+ .text._malloc_r
+                0x08000d9c       0xbc C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-nano-mallocr.o)
+                0x08000d9c                _malloc_r
+ .text          0x08000e58        0x0 C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-sbrkr.o)
+ .text._sbrk_r  0x08000e58       0x24 C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-sbrkr.o)
+                0x08000e58                _sbrk_r
+ .text          0x08000e7c        0x0 C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-mlock.o)
+ .text.__malloc_lock
+                0x08000e7c        0x2 C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-mlock.o)
+                0x08000e7c                __malloc_lock
+ .text.__malloc_unlock
+                0x08000e7e        0x2 C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-mlock.o)
+                0x08000e7e                __malloc_unlock
+ *(.rodata*)
+ .rodata        0x08000e80       0x64 startup.o
+ .rodata._global_impure_ptr
+                0x08000ee4        0x4 C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-impure.o)
+                0x08000ee4                _global_impure_ptr
+                0x08000ee8                . = ALIGN (0x4)
+                0x08000ee8                PROVIDE (__init_array_start, .)
+ *(SORT(.init_array.*))
+ *(.init_array)
+                0x08000ee8                PROVIDE (__init_array_end, .)
+                0x08000ee8                . = ALIGN (0x4)
+                0x08000ee8                _etext = .
+
+.glue_7         0x08000ee8        0x0
+ .glue_7        0x08000ee8        0x0 linker stubs
+
+.glue_7t        0x08000ee8        0x0
+ .glue_7t       0x08000ee8        0x0 linker stubs
+
+.vfp11_veneer   0x08000ee8        0x0
+ .vfp11_veneer  0x08000ee8        0x0 linker stubs
+
+.v4_bx          0x08000ee8        0x0
+ .v4_bx         0x08000ee8        0x0 linker stubs
+
+.iplt           0x08000ee8        0x0
+ .iplt          0x08000ee8        0x0 main.o
+
+.rel.dyn        0x08000ee8        0x0
+ .rel.iplt      0x08000ee8        0x0 main.o
+
+.data           0x20000000       0x68 load address 0x08000ee8
+                0x20000000                . = ALIGN (0x4)
+                0x20000000                _data = .
+ *(.data*)
+ .data          0x20000000        0x0 main.o
+ .data          0x20000000        0x0 serial.o
+ .data          0x20000000        0x0 startup.o
+ .data          0x20000000        0x4 newlib_stubs.o
+                0x20000000                environ
+ .data          0x20000004        0x0 C:\Program Files\6 2017-q1-update\lib\gcc\arm-none-eabi\6.3.1\thumb\v6-m\libgcc.a(_divsi3.o)
+ .data          0x20000004        0x0 C:\Program Files\6 2017-q1-update\lib\gcc\arm-none-eabi\6.3.1\thumb\v6-m\libgcc.a(_dvmd_tls.o)
+ .data          0x20000004        0x0 C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-reent.o)
+ .data          0x20000004        0x0 C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-impure.o)
+ .data._impure_ptr
+                0x20000004        0x4 C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-impure.o)
+                0x20000004                _impure_ptr
+ .data.impure_data
+                0x20000008       0x60 C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-impure.o)
+ .data          0x20000068        0x0 C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-nano-freer.o)
+ .data          0x20000068        0x0 C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-nano-mallocr.o)
+ .data          0x20000068        0x0 C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-sbrkr.o)
+ .data          0x20000068        0x0 C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-mlock.o)
+                0x20000068                . = ALIGN (0x4)
+                0x20000068                _edata = .
+
+.igot.plt       0x20000068        0x0 load address 0x08000f50
+ .igot.plt      0x20000068        0x0 main.o
+
+.bss            0x20000068       0xb8 load address 0x08000f50
+                0x20000068                _bss = .
+ *(.bss*)
+ .bss           0x20000068        0x0 main.o
+ .bss           0x20000068        0x0 serial.o
+ .bss           0x20000068        0x0 startup.o
+ .bss           0x20000068        0x8 newlib_stubs.o
+                0x20000068                __env
+ .bss           0x20000070        0x0 C:\Program Files\6 2017-q1-update\lib\gcc\arm-none-eabi\6.3.1\thumb\v6-m\libgcc.a(_divsi3.o)
+ .bss           0x20000070        0x0 C:\Program Files\6 2017-q1-update\lib\gcc\arm-none-eabi\6.3.1\thumb\v6-m\libgcc.a(_dvmd_tls.o)
+ .bss           0x20000070        0x0 C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-reent.o)
+ .bss           0x20000070        0x0 C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-impure.o)
+ .bss           0x20000070        0x0 C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-nano-freer.o)
+ .bss           0x20000070        0x0 C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-nano-mallocr.o)
+ .bss.__malloc_free_list
+                0x20000070        0x4 C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-nano-mallocr.o)
+                0x20000070                __malloc_free_list
+ .bss.__malloc_sbrk_start
+                0x20000074        0x4 C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-nano-mallocr.o)
+                0x20000074                __malloc_sbrk_start
+ .bss           0x20000078        0x0 C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-sbrkr.o)
+ .bss           0x20000078        0x0 C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-mlock.o)
+ *(COMMON)
+ COMMON         0x20000078       0xa4 serial.o
+                0x20000078                ComError
+                0x2000007c                ComRXBuffer
+                0x200000c8                ComTXBuffer
+                0x20000114                ComOpen
+                0x20000118                ComBusy
+ COMMON         0x2000011c        0x4 C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-reent.o)
+                0x2000011c                errno
+                0x20000120                . = ALIGN (0x4)
+                0x20000120                _ebss = .
+                [!provide]                PROVIDE (end, .)
+                0x20000120                PROVIDE (_HeapStart, .)
+                0x20002000                PROVIDE (_StackTop, (ORIGIN (ram) + LENGTH (ram)))
+OUTPUT(main.elf elf32-littlearm)
+
+.debug_info     0x00000000     0x1407
+ .debug_info    0x00000000       0x62 main.o
+ .debug_info    0x00000062      0x32c serial.o
+ .debug_info    0x0000038e      0x130 startup.o
+ .debug_info    0x000004be      0xf49 newlib_stubs.o
+
+.debug_abbrev   0x00000000      0x4eb
+ .debug_abbrev  0x00000000       0x60 main.o
+ .debug_abbrev  0x00000060      0x15b serial.o
+ .debug_abbrev  0x000001bb       0xc5 startup.o
+ .debug_abbrev  0x00000280      0x26b newlib_stubs.o
+
+.debug_aranges  0x00000000       0x88
+ .debug_aranges
+                0x00000000       0x20 main.o
+ .debug_aranges
+                0x00000020       0x20 serial.o
+ .debug_aranges
+                0x00000040       0x28 startup.o
+ .debug_aranges
+                0x00000068       0x20 newlib_stubs.o
+
+.debug_line     0x00000000      0x443
+ .debug_line    0x00000000       0x59 main.o
+ .debug_line    0x00000059      0x12a serial.o
+ .debug_line    0x00000183       0x91 startup.o
+ .debug_line    0x00000214      0x22f newlib_stubs.o
+
+.debug_str      0x00000000      0x8b4
+ .debug_str     0x00000000       0xe5 main.o
+ .debug_str     0x000000e5       0xef serial.o
+                                0x1eb (size before relaxing)
+ .debug_str     0x000001d4       0xa0 startup.o
+                                0x189 (size before relaxing)
+ .debug_str     0x00000274      0x640 newlib_stubs.o
+                                0x806 (size before relaxing)
+
+.comment        0x00000000       0x7f
+ .comment       0x00000000       0x7f main.o
+                                 0x80 (size before relaxing)
+ .comment       0x0000007f       0x80 serial.o
+ .comment       0x0000007f       0x80 startup.o
+ .comment       0x0000007f       0x80 newlib_stubs.o
+
+.ARM.attributes
+                0x00000000       0x31
+ .ARM.attributes
+                0x00000000       0x31 main.o
+ .ARM.attributes
+                0x00000031       0x31 serial.o
+ .ARM.attributes
+                0x00000062       0x31 startup.o
+ .ARM.attributes
+                0x00000093       0x31 newlib_stubs.o
+ .ARM.attributes
+                0x000000c4       0x1e C:\Program Files\6 2017-q1-update\lib\gcc\arm-none-eabi\6.3.1\thumb\v6-m\libgcc.a(_divsi3.o)
+ .ARM.attributes
+                0x000000e2       0x1e C:\Program Files\6 2017-q1-update\lib\gcc\arm-none-eabi\6.3.1\thumb\v6-m\libgcc.a(_dvmd_tls.o)
+ .ARM.attributes
+                0x00000100       0x2c C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-reent.o)
+ .ARM.attributes
+                0x0000012c       0x2c C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-impure.o)
+ .ARM.attributes
+                0x00000158       0x2c C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-nano-freer.o)
+ .ARM.attributes
+                0x00000184       0x2c C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-nano-mallocr.o)
+ .ARM.attributes
+                0x000001b0       0x2c C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-sbrkr.o)
+ .ARM.attributes
+                0x000001dc       0x2c C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-mlock.o)
+
+.debug_frame    0x00000000      0x5c8
+ .debug_frame   0x00000000       0x4c main.o
+ .debug_frame   0x0000004c      0x1a4 serial.o
+ .debug_frame   0x000001f0       0x94 startup.o
+ .debug_frame   0x00000284      0x228 newlib_stubs.o
+ .debug_frame   0x000004ac       0x20 C:\Program Files\6 2017-q1-update\lib\gcc\arm-none-eabi\6.3.1\thumb\v6-m\libgcc.a(_divsi3.o)
+ .debug_frame   0x000004cc       0x48 C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-reent.o)
+ .debug_frame   0x00000514       0x2c C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-nano-freer.o)
+ .debug_frame   0x00000540       0x2c C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-nano-mallocr.o)
+ .debug_frame   0x0000056c       0x2c C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-sbrkr.o)
+ .debug_frame   0x00000598       0x30 C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-mlock.o)
+
+.debug_ranges   0x00000000       0x18
+ .debug_ranges  0x00000000       0x18 startup.o
+
+Cross Reference Table
+
+Symbol                                            File
+ComBusy                                           serial.o
+ComError                                          serial.o
+ComOpen                                           serial.o
+ComRXBuffer                                       serial.o
+ComTXBuffer                                       serial.o
+Default_Handler                                   startup.o
+GetBuf                                            serial.o
+GetBufCount                                       serial.o
+Hard_Fault_Handler                                startup.o
+PutBuf                                            serial.o
+ReadCom                                           serial.o
+ResetInit                                         startup.o
+Vectors                                           startup.o
+WriteCom                                          serial.o
+_HeapStart                                        newlib_stubs.o
+_StackTop                                         newlib_stubs.o
+                                                  startup.o
+__aeabi_idiv                                      C:\Program Files\6 2017-q1-update\lib\gcc\arm-none-eabi\6.3.1\thumb\v6-m\libgcc.a(_divsi3.o)
+                                                  serial.o
+__aeabi_idiv0                                     C:\Program Files\6 2017-q1-update\lib\gcc\arm-none-eabi\6.3.1\thumb\v6-m\libgcc.a(_dvmd_tls.o)
+                                                  C:\Program Files\6 2017-q1-update\lib\gcc\arm-none-eabi\6.3.1\thumb\v6-m\libgcc.a(_divsi3.o)
+__aeabi_idivmod                                   C:\Program Files\6 2017-q1-update\lib\gcc\arm-none-eabi\6.3.1\thumb\v6-m\libgcc.a(_divsi3.o)
+__aeabi_ldiv0                                     C:\Program Files\6 2017-q1-update\lib\gcc\arm-none-eabi\6.3.1\thumb\v6-m\libgcc.a(_dvmd_tls.o)
+__divsi3                                          C:\Program Files\6 2017-q1-update\lib\gcc\arm-none-eabi\6.3.1\thumb\v6-m\libgcc.a(_divsi3.o)
+__env                                             newlib_stubs.o
+__init_array_end                                  startup.o
+__init_array_start                                startup.o
+__malloc_free_list                                C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-nano-mallocr.o)
+                                                  C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-nano-freer.o)
+__malloc_lock                                     C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-mlock.o)
+                                                  C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-nano-mallocr.o)
+                                                  C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-nano-freer.o)
+__malloc_sbrk_start                               C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-nano-mallocr.o)
+__malloc_unlock                                   C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-mlock.o)
+                                                  C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-nano-mallocr.o)
+                                                  C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-nano-freer.o)
+__sf_fake_stderr                                  C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-impure.o)
+__sf_fake_stdin                                   C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-impure.o)
+__sf_fake_stdout                                  C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-impure.o)
+_close                                            newlib_stubs.o
+_data                                             startup.o
+_ebss                                             startup.o
+_edata                                            startup.o
+_etext                                            startup.o
+_execve                                           newlib_stubs.o
+_exit                                             newlib_stubs.o
+_fork                                             newlib_stubs.o
+_free_r                                           C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-nano-freer.o)
+                                                  C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-reent.o)
+_fstat                                            newlib_stubs.o
+_getpid                                           newlib_stubs.o
+_global_impure_ptr                                C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-impure.o)
+_impure_ptr                                       C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-impure.o)
+                                                  C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-reent.o)
+_isatty                                           newlib_stubs.o
+_kill                                             newlib_stubs.o
+_link                                             newlib_stubs.o
+_lseek                                            newlib_stubs.o
+_malloc_r                                         C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-nano-mallocr.o)
+_read                                             newlib_stubs.o
+_reclaim_reent                                    C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-reent.o)
+_sbrk                                             newlib_stubs.o
+                                                  C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-sbrkr.o)
+_sbrk_r                                           C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-sbrkr.o)
+                                                  C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-nano-mallocr.o)
+_stat                                             newlib_stubs.o
+_times                                            newlib_stubs.o
+_unlink                                           newlib_stubs.o
+_wait                                             newlib_stubs.o
+_write                                            newlib_stubs.o
+cleanup_glue                                      C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-reent.o)
+delay                                             main.o
+egetc                                             serial.o
+                                                  newlib_stubs.o
+egets                                             serial.o
+environ                                           newlib_stubs.o
+eputc                                             serial.o
+                                                  newlib_stubs.o
+eputs                                             serial.o
+                                                  startup.o
+errno                                             C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-reent.o)
+                                                  C:\Program Files\6 2017-q1-update\arm-none-eabi\lib\thumb\v6-m\libc_nano.a(lib_a-sbrkr.o)
+                                                  newlib_stubs.o
+initClock                                         startup.o
+initUART                                          serial.o
+                                                  startup.o
+isr_usart1                                        serial.o
+                                                  startup.o
+main                                              main.o
+                                                  startup.o
+usart_rx                                          serial.o
+usart_tx                                          serial.o

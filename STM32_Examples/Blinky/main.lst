@@ -1,0 +1,217 @@
+0000              1   ;--------------------------------------------------------
+0000              2   ; File Created by C51
+0000              3   ; Version 1.0.0 #1069 (Apr 23 2015) (MSVC)
+0000              4   ; This file was generated Tue Mar 14 21:08:48 2017
+0000              5   ;--------------------------------------------------------
+                  5   $name main
+                  6   $optc51 --model-small
+0000              8            R_DSEG    segment data
+0000              9            R_CSEG    segment code
+0000             10            R_BSEG    segment bit
+0000             11            R_XSEG    segment xdata
+0000             12            R_PSEG    segment xdata
+0000             13            R_ISEG    segment idata
+0000             14            R_OSEG    segment data overlay
+0000             15            BIT_BANK  segment data overlay
+0000             16            R_HOME    segment code
+0000             17            R_GSINIT  segment code
+0000             18            R_IXSEG   segment xdata
+0000             19            R_CONST   segment code
+0000             20            R_XINIT   segment code
+0000             21            R_DINIT   segment code
+0000             22   
+0000             23   ;--------------------------------------------------------
+0000             24   ; Public variables in this module
+0000             25   ;--------------------------------------------------------
+0000             26            public _main
+0000             27            public _delay
+0000             28   ;--------------------------------------------------------
+0000             29   ; Special Function Registers
+0000             30   ;--------------------------------------------------------
+0000             31   ;--------------------------------------------------------
+0000             32   ; special function bits
+0000             33   ;--------------------------------------------------------
+0000             34   ;--------------------------------------------------------
+0000             35   ; overlayable register banks
+0000             36   ;--------------------------------------------------------
+0000             37            rbank0 segment data overlay
+0000             38   ;--------------------------------------------------------
+0000             39   ; internal ram data
+0000             40   ;--------------------------------------------------------
+0000             41            rseg R_DSEG
+0000             42   ;--------------------------------------------------------
+0000             43   ; overlayable items in internal ram 
+0000             44   ;--------------------------------------------------------
+0000             45            rseg    R_OSEG
+0000             46   ;--------------------------------------------------------
+0000             47   ; indirectly addressable internal ram data
+0000             48   ;--------------------------------------------------------
+0000             49            rseg R_ISEG
+0000             50   ;--------------------------------------------------------
+0000             51   ; absolute internal ram data
+0000             52   ;--------------------------------------------------------
+0000             53            DSEG
+0000             54   ;--------------------------------------------------------
+0000             55   ; bit data
+0000             56   ;--------------------------------------------------------
+0000             57            rseg R_BSEG
+0000             58   ;--------------------------------------------------------
+0000             59   ; paged external ram data
+0000             60   ;--------------------------------------------------------
+0000             61            rseg R_PSEG
+0000             62   ;--------------------------------------------------------
+0000             63   ; external ram data
+0000             64   ;--------------------------------------------------------
+0000             65            rseg R_XSEG
+0000             66   ;--------------------------------------------------------
+0000             67   ; absolute external ram data
+0000             68   ;--------------------------------------------------------
+0000             69            XSEG
+0000             70   ;--------------------------------------------------------
+0000             71   ; external initialized ram data
+0000             72   ;--------------------------------------------------------
+0000             73            rseg R_IXSEG
+0000             74            rseg R_HOME
+0000             75            rseg R_GSINIT
+0000             76            rseg R_CSEG
+0000             77   ;--------------------------------------------------------
+0000             78   ; Reset entry point and interrupt vectors
+0000             79   ;--------------------------------------------------------
+0000             80            CSEG at 0x0000
+0000 020100      81            ljmp    _crt0
+0003             82   ;--------------------------------------------------------
+0003             83   ; global & static initialisations
+0003             84   ;--------------------------------------------------------
+0000             85            rseg R_HOME
+0000             86            rseg R_GSINIT
+0000             87            rseg R_GSINIT
+0000             88   ;--------------------------------------------------------
+0000             89   ; data variables initialization
+0000             90   ;--------------------------------------------------------
+0000             91            rseg R_DINIT
+0000             92            ; The linker places a 'ret' at the end of segment R_DINIT.
+0000             93   ;--------------------------------------------------------
+0000             94   ; code
+0000             95   ;--------------------------------------------------------
+0000             96            rseg R_CSEG
+0000             97   ;------------------------------------------------------------
+0000             98   ;Allocation info for local variables in function 'delay'
+0000             99   ;------------------------------------------------------------
+0000            100   ;dly                       Allocated to registers r2 r3 
+0000            101   ;------------------------------------------------------------
+0000            102   ;        C:\Users\Candice\OneDrive\Pictures\Other\ELEC Year 2\ELEC291 Course Content\Project 2\STM32_Examples\Blinky\main.c:3: void delay(int dly)
+0000            103   ;        -----------------------------------------
+0000            104   ;         function delay
+0000            105   ;        -----------------------------------------
+0000            106   _delay:
+0000            107            using   0
+0000 AA82       108            mov     r2,dpl
+0002 AB83       109            mov     r3,dph
+0004            110   ;        C:\Users\Candice\OneDrive\Pictures\Other\ELEC Year 2\ELEC291 Course Content\Project 2\STM32_Examples\Blinky\main.c:5: while( dly--);
+0004            111   L002001?:
+0004 8A04       112            mov     ar4,r2
+0006 8B05       113            mov     ar5,r3
+0008 1A         114            dec     r2
+0009 BAFF00     115            cjne    r2,#0xff,L002008?
+000C 1B         116            dec     r3
+000D            117   L002008?:
+000D EC         118            mov     a,r4
+000E 4D         119            orl     a,r5
+000F 7001       120            jnz     L002001?
+0011 22         121            ret
+0012            122   ;------------------------------------------------------------
+0012            123   ;Allocation info for local variables in function 'main'
+0012            124   ;------------------------------------------------------------
+0012            125   ;------------------------------------------------------------
+0012            126   ;        C:\Users\Candice\OneDrive\Pictures\Other\ELEC Year 2\ELEC291 Course Content\Project 2\STM32_Examples\Blinky\main.c:8: void main(void)
+0012            127   ;        -----------------------------------------
+0012            128   ;         function main
+0012            129   ;        -----------------------------------------
+0012            130   _main:
+0012            131   ;        C:\Users\Candice\OneDrive\Pictures\Other\ELEC Year 2\ELEC291 Course Content\Project 2\STM32_Examples\Blinky\main.c:10: RCC_AHBENR |= 0x00020000; // peripheral clock enable for port A
+0012 901014     132            mov     dptr,#0x1014
+0015 75F002     133            mov     b,#0x02
+0018 120100     134            lcall   __gptrget
+001B FA         135            mov     r2,a
+001C A3         136            inc     dptr
+001D 120100     137            lcall   __gptrget
+0020 FB         138            mov     r3,a
+0021 7C00       139            mov     r4,#0x00
+0023 7D00       140            mov     r5,#0x00
+0025 430402     141            orl     ar4,#0x02
+0028 901014     142            mov     dptr,#0x1014
+002B 75F002     143            mov     b,#0x02
+002E EA         144            mov     a,r2
+002F 120100     145            lcall   __gptrput
+0032 A3         146            inc     dptr
+0033 EB         147            mov     a,r3
+0034 120100     148            lcall   __gptrput
+0037            149   ;        C:\Users\Candice\OneDrive\Pictures\Other\ELEC Year 2\ELEC291 Course Content\Project 2\STM32_Examples\Blinky\main.c:11: GPIOA_MODER |= 0x00000001; // Make pin PA0 output
+0037 900000     150            mov     dptr,#0x0000
+003A 75F000     151            mov     b,#0x00
+003D 120100     152            lcall   __gptrget
+0040 FA         153            mov     r2,a
+0041 A3         154            inc     dptr
+0042 120100     155            lcall   __gptrget
+0045 FB         156            mov     r3,a
+0046 430201     157            orl     ar2,#0x01
+0049 900000     158            mov     dptr,#(0x00&0x00ff)
+004C E4         159            clr     a
+004D F5F0       160            mov     b,a
+004F EA         161            mov     a,r2
+0050 120100     162            lcall   __gptrput
+0053 A3         163            inc     dptr
+0054 EB         164            mov     a,r3
+0055 120100     165            lcall   __gptrput
+0058            166   ;        C:\Users\Candice\OneDrive\Pictures\Other\ELEC Year 2\ELEC291 Course Content\Project 2\STM32_Examples\Blinky\main.c:12: while(1)
+0058            167   L003002?:
+0058            168   ;        C:\Users\Candice\OneDrive\Pictures\Other\ELEC Year 2\ELEC291 Course Content\Project 2\STM32_Examples\Blinky\main.c:14: GPIOA_ODR |= 0x00000001; // PA0=1
+0058 900014     169            mov     dptr,#0x0014
+005B 75F000     170            mov     b,#0x00
+005E 120100     171            lcall   __gptrget
+0061 FA         172            mov     r2,a
+0062 A3         173            inc     dptr
+0063 120100     174            lcall   __gptrget
+0066 FB         175            mov     r3,a
+0067 430201     176            orl     ar2,#0x01
+006A 900014     177            mov     dptr,#(0x14&0x00ff)
+006D E4         178            clr     a
+006E F5F0       179            mov     b,a
+0070 EA         180            mov     a,r2
+0071 120100     181            lcall   __gptrput
+0074 A3         182            inc     dptr
+0075 EB         183            mov     a,r3
+0076 120100     184            lcall   __gptrput
+0079            185   ;        C:\Users\Candice\OneDrive\Pictures\Other\ELEC Year 2\ELEC291 Course Content\Project 2\STM32_Examples\Blinky\main.c:15: delay(500000);
+0079 90A120     186            mov     dptr,#0xA120
+007C 120100     187            lcall   _delay
+007F            188   ;        C:\Users\Candice\OneDrive\Pictures\Other\ELEC Year 2\ELEC291 Course Content\Project 2\STM32_Examples\Blinky\main.c:16: GPIOA_ODR &= ~(0x00000001); // PA0=0
+007F 900014     189            mov     dptr,#0x0014
+0082 75F000     190            mov     b,#0x00
+0085 120100     191            lcall   __gptrget
+0088 FA         192            mov     r2,a
+0089 A3         193            inc     dptr
+008A 120100     194            lcall   __gptrget
+008D FB         195            mov     r3,a
+008E 5302FE     196            anl     ar2,#0xFE
+0091 900014     197            mov     dptr,#(0x14&0x00ff)
+0094 E4         198            clr     a
+0095 F5F0       199            mov     b,a
+0097 EA         200            mov     a,r2
+0098 120100     201            lcall   __gptrput
+009B A3         202            inc     dptr
+009C EB         203            mov     a,r3
+009D 120100     204            lcall   __gptrput
+00A0            205   ;        C:\Users\Candice\OneDrive\Pictures\Other\ELEC Year 2\ELEC291 Course Content\Project 2\STM32_Examples\Blinky\main.c:17: delay(500000);
+00A0 90A120     206            mov     dptr,#0xA120
+00A3 120100     207            lcall   _delay
+00A6 8001       208            sjmp    L003002?
+00A8            209            rseg R_CSEG
+00A8            210   
+0000            211            rseg R_XINIT
+0000            212   
+0000            213            rseg R_CONST
+0000            214   
+0003            215            CSEG
+0003            216   
+0003            217   end
