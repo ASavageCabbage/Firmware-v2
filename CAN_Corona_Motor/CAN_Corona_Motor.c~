@@ -27,7 +27,8 @@ MCP_CAN CAN(CAN_SS);
 
 int canSSOffset = 0;
 volatile float rpm_sp = 0;
-volatile float v_sp
+volatile float v_sp;
+volatile float D = 0;
 
 void CAN_setup( void ){
 	// Initialize CAN bus serial communications
@@ -60,11 +61,10 @@ double rpm2volts( float v_sp, float vmin, float vmax ){
 void Timer1ISR(void) 
 {
 	TIM1_SR &= ~BIT0; // clear update interrupt flag
-	Count++;
-	if (Count > 500){
-		Count = 0;
+	if (D * 40 > TIM1_CNT){
 		rpm_sp = rpm2volts( v_sp, vmin, vmax );
-	}   
+		TIM2_CH1 ~= TIM_CH1;
+	}
 }
 
 void SysInit(void)
@@ -76,7 +76,7 @@ void SysInit(void)
 	// Set up timer
 	RCC_APB2ENR |= BIT11; // turn on clock for timer1
 	// TIM1_CNT = ;
-	TIM1_PSC = 0x3E8;	// Pulse clk every 1ms
+	// TIM1_PSC = 0x3E8;	// Pulse clk every 1ms
 	TIM1_ARR = 8000;	// reload counter with 8000 at each overflow (equiv to 1ms)
 
 	ISER |= BIT13;        // enable timer interrupts in the NVIC
