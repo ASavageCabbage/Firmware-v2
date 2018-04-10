@@ -58,13 +58,17 @@ double rpm2volts( float v_sp, float vmin, float vmax ){
 	return rpm;
 }
 
-void Timer1ISR(void) 
+void Timer2ISR(void) 
 {
-	TIM1_SR &= ~BIT0; // clear update interrupt flag
-	if (D * 40 > TIM1_CNT){
-		rpm_sp = rpm2volts( v_sp, vmin, vmax );
-		TIM2_CH1 ~= TIM_CH1;
+	TIM2_SR &= ~BIT0; // clear update interrupt flag
+	if (D * 4000 > TIM2_CNT){
+		TIM2_CH1 ~= TIM2_CH1;
 	}
+}
+
+void Timer3ISR(void) 
+{
+	
 }
 
 void SysInit(void)
@@ -89,5 +93,6 @@ void SysInit(void)
 void main( void ){
 	SysInit();
 	CAN_setup();
+	rpm_sp = rpm2volts( v_sp, vmin, vmax );
 }
 
