@@ -1,17 +1,21 @@
-/* UBC Solar Corona Motor/Motor Controller Code
+/* UBC Solar Motor/Motor Controller Code
 	Date: 1/13/18
 	Purpose:
-	- To monitor and/or control the speed, torque, input voltage, etc., of the M2096D-III motor via the pins on hte M2096C motor controller and other hardware
-	- To implement the PID controller computations
+	- To monitor and/or control the speed, torque, input voltage, etc., of the motor via the pins on the motor controller and other hardware
+	- To implement the PID controller
 	- To communicate data collected to the driver, pit crew, and the rest of the electrical system in the car via CAN Bus
 	Inputs:
-	-
+	- w_sp = Speed set point value from the driver
+	- B+, B- = Input terminals from battery
+	- Kp, Ki, Kd = PID controller constants
 	Outputs:
-	-
+	- VA, VB, VC = Set of 3-phase voltages applied to the terminals of the motor
+	- ___ = CAN messages
 */
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #include <ubcsolar_can_ids.h>
 #include <SPI.h>
 #include <mcp_can.h>
@@ -22,13 +26,43 @@
 #define BUS_SPEED CAN_125KBPS
 
 #define RPM2MPS 2 * pi / 60
+#define GND 0
+#define VCC 3.3
 
 MCP_CAN CAN(CAN_SS);
 
 int canSSOffset = 0;
-volatile float rpm_sp = 0;
-volatile float v_sp;
+volatile float w_sp = 0;		// Speed set point given by the driver
 volatile float D = 0;
+
+// Define and initialize user interface variables
+volatile int dir;			// Forward = 1, Reverse = 0
+volatile int brake;			// Pressed = 1, Not pressed = 0
+volatile float posedge;			// Rising edge of clk whose freq is determined by w_sp
+volatile int enInv = 0;			// Inverter enabled = 1, disabled = 0
+volatile int enRegen = 0;		// Regen enabled = 1, disabled = 0
+
+// Define a structure for containing the state of the MOSFET gates (GND = ON, VCC = OFF)
+// For a diagram of the elements' corresponding MOSFETs, see Confluence page
+typedef struct{
+	float HB1;
+	float HB2;
+	float HB3;
+	float HB4;
+	float HB5;
+	float HB6;
+}SpeedCtrl;
+
+// 3-phase MOSFET bridge control variables
+SpeedCtrl initBridge = {VCC, VCC, VCC, VCC, VCC, VCC};		// Initial condition
+SpeedCtrl stateBridge;						// Struct for current states
+float *Qn1 = (float *)malloc(sizeof(float));			// Pointers to the two MOSFETs that are on
+float *Qn2 = (float *)malloc(sizeof(float));
+Qn1 = &stateBridge;						// Initialize pointers to point to addresses of first 2 elements in stateBridge
+Qn2 = &stateBridge + 1;
+
+// Initialize MOSFET bridge
+stateBridge = initBridge;
 
 void CAN_setup( void ){
 	// Initialize CAN bus serial communications
@@ -47,6 +81,7 @@ void CAN_setup( void ){
 			CAN = MCP_CAN(CAN_SS + canSSOffset);
 			ljmp CAN_INIT;
 		}
+	return;
 }
 
 double rpm2volts( float v_sp, float vmin, float vmax ){
@@ -58,6 +93,39 @@ double rpm2volts( float v_sp, float vmin, float vmax ){
 	return rpm;
 }
 
+// Purpose: To control the 3-phase MOSFET bridge
+// Inputs:
+// 	-dir = Direction to turn motor
+// 	-brake = If brake is pressed or not
+// 	-posedge = Pulse when posedge clk where clk freq changes according to w_sp
+// Outputs: stateBridge = ON or OFF signal to MOSFETs
+void bridgeCtrl( int dir, int brake, int posedge ){
+	if( ~brake && posedge ){
+		if( dir ){
+			*Qn1 = VCC;
+			Qn1 = Qn2;
+			Qn2++;
+			*Qn2 = GND;
+		}
+		else{
+			*Qn2 = VCC;
+			Qn2 = Qn1;
+			Qn1--;
+			*Qn1 = GND;
+		}
+	}
+
+	else if( brake && posedge ){
+		stateBridge = initBridge;
+		enRegen = 1;
+		enInv = 0;
+	}
+
+	else{
+		stateBridge = initBridge;
+	}
+}
+
 void Timer2ISR(void) 
 {
 	TIM2_SR &= ~BIT0; // clear update interrupt flag
@@ -66,10 +134,7 @@ void Timer2ISR(void)
 	}
 }
 
-void Timer3ISR(void) 
-{
-	
-}
+// void Timer3ISR(void){}
 
 void SysInit(void)
 {
@@ -90,6 +155,7 @@ void SysInit(void)
 	enable_interrupts();
 }
 
+// Write to pins on the STM32F103RB microcontroller and implement above functions
 void main( void ){
 	SysInit();
 	CAN_setup();
