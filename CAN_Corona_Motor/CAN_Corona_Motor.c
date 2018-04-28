@@ -29,11 +29,17 @@
 #define GND 0
 #define VCC 3.3
 
+#define Kp				// PID Controller constants
+#define Ki
+#define Kd
+
 MCP_CAN CAN(CAN_SS);
 
 int canSSOffset = 0;
-volatile float w_sp = 0;		// Speed set point given by the driver
-volatile float D = 0;
+
+volatile double w_sp = 0;		// Speed set point given by the driver
+volatile double D = 0;
+volatile int clk = 0;			// Clock generated using w_sp
 
 // Define and initialize user interface variables
 volatile int dir;			// Forward = 1, Reverse = 0
@@ -81,14 +87,16 @@ void CAN_setup( void ){
 			CAN = MCP_CAN(CAN_SS + canSSOffset);
 			ljmp CAN_INIT;
 		}
-	return;
 }
 
-double rpm2volts( float v_sp, float vmin, float vmax ){
+// Purpose: To convert encoder values to desired speed
+// Inputs:
+// Outputs:
+double rpm2volts( float w_sp, float vmin, float vmax ){
 	double rpm = 0;
 	
 	G_sp = 1300 * RPM2MPS / (vmax - vmin);
-	rpm = G_sp * v_sp;
+	rpm = G_sp * w_sp;
 
 	return rpm;
 }
@@ -101,6 +109,8 @@ double rpm2volts( float v_sp, float vmin, float vmax ){
 // Outputs: stateBridge = ON or OFF signal to MOSFETs
 void bridgeCtrl( int dir, int brake, int posedge ){
 	if( ~brake && posedge ){
+		enRegen = 0;
+		enInv = 1;
 		if( dir ){
 			*Qn1 = VCC;
 			Qn1 = Qn2;
@@ -115,15 +125,19 @@ void bridgeCtrl( int dir, int brake, int posedge ){
 		}
 	}
 
-	else if( brake && posedge ){
+	else{
 		stateBridge = initBridge;
 		enRegen = 1;
 		enInv = 0;
 	}
+}
 
-	else{
-		stateBridge = initBridge;
-	}
+// Purpose: To change the frequency of the clk to match the set point speed
+// Inputs: w_sp = Set point speed given by the driver
+// Outputs: clk = Clock of desired frequency
+// SPECIAL NOTE!!! PID controller constants used here!!!
+int vfd( double w_sp ){
+	return clk;
 }
 
 void Timer2ISR(void) 
@@ -159,6 +173,6 @@ void SysInit(void)
 void main( void ){
 	SysInit();
 	CAN_setup();
-	rpm_sp = rpm2volts( v_sp, vmin, vmax );
+	rpm_sp = rpm2volts( w_sp, vmin, vmax );
 }
 
