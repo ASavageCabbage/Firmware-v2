@@ -26,8 +26,8 @@
 #define BUS_SPEED CAN_125KBPS
 
 #define RPM2MPS 2 * pi / 60
-#define GND 0
-#define VCC 3.3
+#define OFF 0
+#define ON 1
 
 #define Kp				// PID Controller constants
 #define Ki
@@ -38,32 +38,37 @@ MCP_CAN CAN(CAN_SS);
 int canSSOffset = 0;
 
 volatile double w_sp = 0;		// Speed set point given by the driver
+volatile double w_o = 0;
 volatile double D = 0;
 volatile int clk = 0;			// Clock generated using w_sp
+
+// Precharge variables
+volatile double tauPre = 75e3 * 68e-6;	// Estimated time constant of precharge circuit = RC
+volatile int swPre[2] = [OFF, OFF];	// Control for switches in series and in parallel with precharge resistor (Contactors 1 and 2 respectively)
 
 // Define and initialize user interface variables
 volatile int dir;			// Forward = 1, Reverse = 0
 volatile int brake;			// Pressed = 1, Not pressed = 0
-volatile float posedge;			// Rising edge of clk whose freq is determined by w_sp
-volatile int enInv = 0;			// Inverter enabled = 1, disabled = 0
-volatile int enRegen = 0;		// Regen enabled = 1, disabled = 0
+volatile int posedge;			// Rising edge of clk whose freq is determined by w_sp
+volatile int enInv = OFF;		// Inverter enabled = 1, disabled = 0
+volatile int enRegen = OFF;		// Regen enabled = 1, disabled = 0
 
 // Define a structure for containing the state of the MOSFET gates (GND = ON, VCC = OFF)
 // For a diagram of the elements' corresponding MOSFETs, see Confluence page
 typedef struct{
-	float HB1;
-	float HB2;
-	float HB3;
-	float HB4;
-	float HB5;
-	float HB6;
+	int HB1;
+	int HB2;
+	int HB3;
+	int HB4;
+	int HB5;
+	int HB6;
 }SpeedCtrl;
 
 // 3-phase MOSFET bridge control variables
 SpeedCtrl initBridge = {VCC, VCC, VCC, VCC, VCC, VCC};		// Initial condition
 SpeedCtrl stateBridge;						// Struct for current states
-float *Qn1 = (float *)malloc(sizeof(float));			// Pointers to the two MOSFETs that are on
-float *Qn2 = (float *)malloc(sizeof(float));
+int *Qn1 = (int *)malloc(sizeof(int));				// Pointers to the two MOSFETs that are on
+int *Qn2 = (int *)malloc(sizeof(int));
 Qn1 = &stateBridge;						// Initialize pointers to point to addresses of first 2 elements in stateBridge
 Qn2 = &stateBridge + 1;
 
@@ -101,34 +106,48 @@ double rpm2volts( float w_sp, float vmin, float vmax ){
 	return rpm;
 }
 
+// Purpose: To apply a delay between the first and second contactors closing during precharge
+// Input: tauPre = Time constant of precharge circuit
+// Output: swPre = Array containing states of precharge contactors
+// SPECIAL NOTE!!! Put in timer 3 ISR --> Enable for precharge, disable when done
+int * precharge( double tauPre ){
+	swPre[0] = ON;			// Close contactor 1
+	swPre[1] = OFF;			// Open contactor 2
+	// Wait 30s
+	// Check for 30s
+	swPre[1] = ON;			// Close contactor 2
+	return swPre;
+}
+
 // Purpose: To control the 3-phase MOSFET bridge
 // Inputs:
 // 	-dir = Direction to turn motor
 // 	-brake = If brake is pressed or not
 // 	-posedge = Pulse when posedge clk where clk freq changes according to w_sp
 // Outputs: stateBridge = ON or OFF signal to MOSFETs
+// CALL IN TIMER 1 ISR
 void bridgeCtrl( int dir, int brake, int posedge ){
 	if( ~brake && posedge ){
-		enRegen = 0;
-		enInv = 1;
+		enRegen = OFF;
+		enInv = ON;
 		if( dir ){
-			*Qn1 = VCC;
+			*Qn1 = ON;
 			Qn1 = Qn2;
 			Qn2++;
-			*Qn2 = GND;
+			*Qn2 = OFF;
 		}
 		else{
-			*Qn2 = VCC;
+			*Qn2 = ON;
 			Qn2 = Qn1;
 			Qn1--;
-			*Qn1 = GND;
+			*Qn1 = OFF;
 		}
 	}
 
 	else{
 		stateBridge = initBridge;
-		enRegen = 1;
-		enInv = 0;
+		enRegen = ON;
+		enInv = OFF;
 	}
 }
 
@@ -136,16 +155,14 @@ void bridgeCtrl( int dir, int brake, int posedge ){
 // Inputs: w_sp = Set point speed given by the driver
 // Outputs: clk = Clock of desired frequency
 // SPECIAL NOTE!!! PID controller constants used here!!!
-int vfd( double w_sp ){
+int vfd( double w_sp, double w_o ){
 	return clk;
 }
 
 void Timer2ISR(void) 
 {
 	TIM2_SR &= ~BIT0; // clear update interrupt flag
-	if (D * 4000 > TIM2_CNT){
-		TIM2_CH1 ~= TIM2_CH1;
-	}
+	bridgeCtrl( dir, brake, posedge );
 }
 
 // void Timer3ISR(void){}
@@ -174,5 +191,6 @@ void main( void ){
 	SysInit();
 	CAN_setup();
 	rpm_sp = rpm2volts( w_sp, vmin, vmax );
+	while( *swPre && *(swPre + 1) ){}
 }
 
