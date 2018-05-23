@@ -1,0 +1,28 @@
+--cpu=Cortex-M4.fp --branchpatch=sdcomp-29491-629360
+"blink\startup_stm32l476xx.o"
+"blink\stm32l4xx_it.o"
+"blink\main.o"
+"blink\stm32l4xx_hal_msp.o"
+"blink\system_stm32l4xx.o"
+"blink\stm32l4xx_hal_uart.o"
+"blink\stm32l4xx_hal_i2c_ex.o"
+"blink\stm32l4xx_hal.o"
+"blink\stm32l4xx_hal_tim_ex.o"
+"blink\stm32l4xx_hal_gpio.o"
+"blink\stm32l4xx_hal_rcc_ex.o"
+"blink\stm32l4xx_hal_i2c.o"
+"blink\stm32l4xx_hal_flash.o"
+"blink\stm32l4xx_hal_pwr.o"
+"blink\stm32l4xx_hal_flash_ex.o"
+"blink\stm32l4xx_hal_tim.o"
+"blink\stm32l4xx_hal_uart_ex.o"
+"blink\stm32l4xx_hal_flash_ramfunc.o"
+"blink\stm32l4xx_hal_dma_ex.o"
+"blink\stm32l4xx_hal_dma.o"
+"blink\stm32l4xx_hal_cortex.o"
+"blink\stm32l4xx_hal_pwr_ex.o"
+"blink\stm32l4xx_hal_rcc.o"
+--library_type=microlib --strict --scatter "blink\blink.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "blink.map" -o blink\blink.axf
