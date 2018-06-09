@@ -1,7 +1,7 @@
 [PreviousGenFiles]
-HeaderPath=C:/Users/u/Desktop/solarteam files/encoder/Inc
+HeaderPath=C:/Users/u/Desktop/solarteam files/Firmware-v2/encoder/Inc
 HeaderFiles=stm32l4xx_it.h;stm32l4xx_hal_conf.h;main.h;
-SourcePath=C:/Users/u/Desktop/solarteam files/encoder/Src
+SourcePath=C:/Users/u/Desktop/solarteam files/Firmware-v2/encoder/Src
 SourceFiles=stm32l4xx_it.c;stm32l4xx_hal_msp.c;main.c;
 
 [PreviousLibFiles]

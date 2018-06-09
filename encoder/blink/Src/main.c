@@ -111,15 +111,18 @@ int main(void)
   /* USER CODE BEGIN 2 */
 HAL_TIM_Encoder_Start(&htim1,TIM_CHANNEL_ALL); 
   /* USER CODE END 2 */
-
+float num;
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
 	i=TIM1->CNT;
-		
+	num=i;
+  /* USER CODE END WHILE */
+	
   /* USER CODE END WHILE */
 	printf("the counter is %d\n",i);
+	printf("the rpm is %.2f\n",num/9.419);
 		HAL_Delay(2000);
   /* USER CODE BEGIN 3 */
 
@@ -201,7 +204,7 @@ static void MX_TIM1_Init(void)
   htim1.Instance = TIM1;
   htim1.Init.Prescaler = 0;
   htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim1.Init.Period = 4000;
+  htim1.Init.Period = 16000;
   htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim1.Init.RepetitionCounter = 0;
   htim1.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;

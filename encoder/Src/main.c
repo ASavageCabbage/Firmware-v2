@@ -99,7 +99,7 @@ int main(void)
   /* USER CODE BEGIN 2 */
  HAL_TIM_Encoder_Start(&htim1,TIM_CHANNEL_ALL);  
   /* USER CODE END 2 */
-int i=0;
+
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
