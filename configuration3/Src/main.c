@@ -157,6 +157,9 @@ float num;
 printf("the counter is %d\n",i);
 		printf("the rpm is %.2f\n",num/5.88235);
 		HAL_Delay(1000);
+		printf("the torque is %.2f NM\n",num/74.074);
+		//coversion is:  4 turns to reach 10k max for pulses/ conversion is 10k/135NM(max motor torque)
+		
   /* USER CODE BEGIN 3 */
 
   }
