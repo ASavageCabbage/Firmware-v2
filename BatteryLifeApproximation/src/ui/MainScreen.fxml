@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.MainScreenController">
+   <children>
+      <GridPane layoutX="60.0" layoutY="345.0" prefHeight="198.0" prefWidth="421.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="297.0" minWidth="10.0" prefWidth="293.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="187.0" minWidth="10.0" prefWidth="117.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="53.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="115.0" minHeight="10.0" prefHeight="94.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="115.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="46.0" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="43.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Solar Car:">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label text="Estimated Top Speed (km/h):" GridPane.rowIndex="3">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label text="Estimated Battery Life at Top Speed (min):" GridPane.rowIndex="4">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label text="&lt;&lt;Name&gt;&gt;" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Lucida Sans Typewriter Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label text="&lt;&lt;Top Speed&gt;&gt;" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <font>
+                  <Font name="Lucida Sans Typewriter Regular" size="20.0" />
+               </font>
+            </Label>
+            <Label prefHeight="25.0" prefWidth="159.0" text="&lt;&lt;Battery Life&gt;&gt;" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <font>
+                  <Font name="Lucida Sans Typewriter Regular" size="20.0" />
+               </font>
+            </Label>
+            <Label text="Total Mass (kg):" GridPane.rowIndex="2">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label text="&lt;&lt;Total Mass&gt;&gt;" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Lucida Sans Typewriter Regular" size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </GridPane>
+      <GridPane layoutX="682.0" layoutY="75.0" prefHeight="338.0" prefWidth="184.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="85.0" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="85.0" minHeight="10.0" prefHeight="46.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="155.0" minHeight="10.0" prefHeight="41.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="155.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="155.0" minHeight="10.0" prefHeight="48.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="123.0" minHeight="10.0" prefHeight="41.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="123.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="123.0" minHeight="10.0" prefHeight="39.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="123.0" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Button mnemonicParsing="false" text="General" />
+            <Label text="Mechanical:" GridPane.rowIndex="1">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Button mnemonicParsing="false" text="Aeroshell/Chassis" GridPane.rowIndex="2" />
+            <Button mnemonicParsing="false" text="Wheels" GridPane.rowIndex="3" />
+            <Label text="Electrical:" GridPane.rowIndex="4">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Button mnemonicParsing="false" text="Arrays" GridPane.rowIndex="5" />
+            <Button mnemonicParsing="false" text="Battery" GridPane.rowIndex="6" />
+            <Button mnemonicParsing="false" text="Motor" GridPane.rowIndex="7" />
+            <Button mnemonicParsing="false" text="Misc. Powered Components" GridPane.rowIndex="8" />
+         </children>
+      </GridPane>
+      <Label layoutX="604.0" layoutY="33.0" text="View/Edit Car Specification">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="604.0" layoutY="444.0" text="Detailed Battery Life Simulator">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Button layoutX="682.0" layoutY="483.0" mnemonicParsing="false" text="To Simulator" />
+      <Button layoutX="783.0" layoutY="561.0" mnemonicParsing="false" text="Quit Application" />
+      <ImageView fitHeight="285.0" fitWidth="517.0" layoutX="60.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" />
+   </children>
+</AnchorPane>
