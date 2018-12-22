@@ -1,18 +1,13 @@
 package model;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-
 import java.util.List;
 
 public class SolarCar {
 
-    private StringProperty name = new SimpleStringProperty();
-    private IntegerProperty maxSpeed = new SimpleIntegerProperty();
-    private IntegerProperty batteryLife = new SimpleIntegerProperty();
-    private IntegerProperty totalMass = new SimpleIntegerProperty();
+    private String name;
+    private double maxSpeed;
+    private double batteryLife;
+    private double totalMass;
 
     private AeroShell aeroShell;
     private Arrays arrays;
@@ -26,51 +21,35 @@ public class SolarCar {
     // Getters and Setters
 
     public String getName() {
-        return name.get();
-    }
-
-    public StringProperty nameProperty() {
         return name;
     }
 
     public void setName(String name) {
-        this.name.set(name);
+        this.name = name;
     }
 
-    public int getMaxSpeed() {
-        return maxSpeed.get();
-    }
-
-    public IntegerProperty maxSpeedProperty() {
+    public double getMaxSpeed() {
         return maxSpeed;
     }
 
-    public void setMaxSpeed(int maxSpeed) {
-        this.maxSpeed.set(maxSpeed);
+    public void setMaxSpeed(double maxSpeed) {
+        this.maxSpeed = maxSpeed;
     }
 
-    public int getBatteryLife() {
-        return batteryLife.get();
-    }
-
-    public IntegerProperty batteryLifeProperty() {
+    public double getBatteryLife() {
         return batteryLife;
     }
 
-    public void setBatteryLife(int batteryLife) {
-        this.batteryLife.set(batteryLife);
+    public void setBatteryLife(double batteryLife) {
+        this.batteryLife = batteryLife;
     }
 
-    public int getTotalMass() {
-        return totalMass.get();
-    }
-
-    public IntegerProperty totalMassProperty() {
+    public double getTotalMass() {
         return totalMass;
     }
 
-    public void setTotalMass(int totalMass) {
-        this.totalMass.set(totalMass);
+    public void setTotalMass(double totalMass) {
+        this.totalMass = totalMass;
     }
 
     public AeroShell getAeroShell() {
@@ -131,5 +110,15 @@ public class SolarCar {
 
     // Methods that actually do stuff
 
+    //TODO: Implement
+    // EFFECTS: Returns true if all the car's components have had their specs properly set.
+    public boolean isValid() {
+        return false;
+    }
 
+    //TODO: Implement
+    // EFFECTS: Returns an error message detailing issues with car component states.
+    public String errorMessage() {
+        return "";
+    }
 }

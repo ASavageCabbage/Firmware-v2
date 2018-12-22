@@ -38,17 +38,17 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label text="&lt;&lt;Name&gt;&gt;" GridPane.rowIndex="1">
+            <Label fx:id="name" text="&lt;&lt;Name&gt;&gt;" GridPane.rowIndex="1">
                <font>
                   <Font name="Lucida Sans Typewriter Bold" size="20.0" />
                </font>
             </Label>
-            <Label text="&lt;&lt;Top Speed&gt;&gt;" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <Label fx:id="topSpeed" text="&lt;&lt;Top Speed&gt;&gt;" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <font>
                   <Font name="Lucida Sans Typewriter Regular" size="20.0" />
                </font>
             </Label>
-            <Label prefHeight="25.0" prefWidth="159.0" text="&lt;&lt;Battery Life&gt;&gt;" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <Label fx:id="batteryLife" prefHeight="25.0" prefWidth="159.0" text="&lt;&lt;Battery Life&gt;&gt;" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <font>
                   <Font name="Lucida Sans Typewriter Regular" size="20.0" />
                </font>
@@ -58,7 +58,7 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label text="&lt;&lt;Total Mass&gt;&gt;" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <Label fx:id="totalMass" text="&lt;&lt;Total Mass&gt;&gt;" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <font>
                   <Font name="Lucida Sans Typewriter Regular" size="20.0" />
                </font>
@@ -110,8 +110,9 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Button layoutX="682.0" layoutY="483.0" mnemonicParsing="false" text="To Simulator" />
+      <Button fx:id="toSimulator" layoutX="682.0" layoutY="483.0" mnemonicParsing="false" text="To Simulator" />
       <Button layoutX="783.0" layoutY="561.0" mnemonicParsing="false" text="Quit Application" />
-      <ImageView fitHeight="285.0" fitWidth="517.0" layoutX="60.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="poster" fitHeight="285.0" fitWidth="517.0" layoutX="60.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="errorMessage" layoutX="604.0" layoutY="526.0" text="&lt;&lt;Error Message&gt;&gt;" />
    </children>
 </AnchorPane>
