@@ -117,8 +117,10 @@ public class SolarCar {
     }
 
     //TODO: Implement
-    // EFFECTS: Returns an error message detailing issues with car component states.
+    // EFFECTS: Returns an error message detailing any issues with car component states.
     public String errorMessage() {
-        return "";
+        String message = "Issues found in specs of:";
+        message += ".";
+        return message;
     }
 }

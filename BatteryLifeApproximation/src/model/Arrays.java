@@ -7,7 +7,7 @@ public class Arrays {
     private double supplementalCharging; // Additional charging rate provided by supplemental arrays; units: Watts
     private double mass; // Units: Kilograms
 
-    private boolean isSupplemented; // Are the supplemental arrays in use?
+    private boolean isSupplemented = false; // Are the supplemental arrays in use?
 
     // Getters and Setters
 
