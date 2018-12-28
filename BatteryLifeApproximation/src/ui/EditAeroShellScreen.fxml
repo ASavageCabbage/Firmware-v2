@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.EditAeroShellScreenController">
+   <children>
+      <GridPane layoutX="37.0" layoutY="200.0" prefHeight="141.0" prefWidth="429.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="163.0" minWidth="10.0" prefWidth="163.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="138.0" minWidth="10.0" prefWidth="125.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="152.0" minWidth="10.0" prefWidth="140.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Cross-Sectional Area (m^2):" />
+            <Label text="Drag Coefficient:" GridPane.rowIndex="1" />
+            <Label text="Aeroshell Mass (kg):" GridPane.rowIndex="2" />
+            <Label text="Chassis Mass (kg):" GridPane.rowIndex="3" />
+            <Label fx:id="crossArea" text="crossArea" GridPane.columnIndex="1">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="dragCoeff" text="dragCoeff" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="aeroMass" text="aMass" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="chassisMass" text="cMass" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <TextField fx:id="newCrossArea" GridPane.columnIndex="2" />
+            <TextField fx:id="newDragCoeff" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <TextField fx:id="newAeroMass" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <TextField fx:id="newChassisMass" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+         </children>
+      </GridPane>
+      <Button layoutX="538.0" layoutY="348.0" mnemonicParsing="false" onAction="#handleQuit" text="Quit" />
+      <Button fx:id="saveButton" layoutX="481.0" layoutY="348.0" mnemonicParsing="false" onAction="#handleSave" text="Save" />
+      <Label layoutX="326.0" layoutY="176.0" text="New Values (Optional):" />
+      <Label layoutX="202.0" layoutY="176.0" text="Old Values:" />
+   </children>
+</AnchorPane>

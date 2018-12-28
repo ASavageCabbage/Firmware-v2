@@ -4,12 +4,13 @@ import com.sun.istack.internal.NotNull;
 import model.*;
 
 import java.io.*;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 // The methods in this class have been manually coupled to the order of fields as declared in the individual class code.
-// As such, any additions (ex. adding new fields) should be done strictly sequentially to avoid bugs. If anyone has a
-// way to weaken the coupling so changes are automatically reflected, please send me suggestions.
+// As such, any additions (ex. adding new fields) should be done strictly sequentially to avoid bugs.
 
 public class SavingManager {
 
@@ -43,22 +44,30 @@ public class SavingManager {
         return car;
     }
 
-    // REQUIRES: file contains at least one line
     // EFFECTS: Sets car name based on SolarCar save file
     public static void loadCar(@NotNull File file, @NotNull SolarCar car) {
-        List<String> fileContents = readFile(file);
-        car.setName(fileContents.iterator().next());
+        try {
+            List<String> fileContents = readFile(file);
+            Iterator<String> iterator = fileContents.iterator();
+            car.setName(iterator.next());
+        } catch (NoSuchElementException e) {
+            System.out.println("Error loading SolarCar, file did not contain enough lines to fully specify fields.");
+        }
     }
 
-    // REQUIRES: file contains at least 4 lines of strings parseable to double
     // EFFECTS: Generates an AeroShell instance with specification based on save file
     public static AeroShell loadAeroShell(@NotNull File file) {
         AeroShell as = new AeroShell();
-        List<String> fileContents = readFile(file);
-        as.setCrossArea(Double.parseDouble(fileContents.iterator().next()));
-        as.setDragCoefficient(Double.parseDouble(fileContents.iterator().next()));
-        as.setAeroShellMass(Double.parseDouble(fileContents.iterator().next()));
-        as.setChassisMass(Double.parseDouble(fileContents.iterator().next()));
+        try {
+            List<String> fileContents = readFile(file);
+            Iterator<String> iterator = fileContents.iterator();
+            as.setCrossArea(Double.parseDouble(iterator.next()));
+            as.setDragCoefficient(Double.parseDouble(iterator.next()));
+            as.setAeroShellMass(Double.parseDouble(iterator.next()));
+            as.setChassisMass(Double.parseDouble(iterator.next()));
+        } catch (NoSuchElementException e) {
+            System.out.println("Error loading AeroShell, file did not contain enough lines to fully specify fields.");
+        }
         return as;
     }
 
@@ -66,10 +75,15 @@ public class SavingManager {
     // EFFECTS: Generates an Arrays instance with specification based on save file
     public static Arrays loadArrays(@NotNull File file) {
         Arrays arr = new Arrays();
-        List<String> fileContents = readFile(file);
-        arr.setBaseCharging(Double.parseDouble(fileContents.iterator().next()));
-        arr.setSupplementalCharging(Double.parseDouble(fileContents.iterator().next()));
-        arr.setMass(Double.parseDouble(fileContents.iterator().next()));
+        try {
+            List<String> fileContents = readFile(file);
+            Iterator<String> iterator = fileContents.iterator();
+            arr.setBaseCharging(Double.parseDouble(iterator.next()));
+            arr.setSupplementalCharging(Double.parseDouble(iterator.next()));
+            arr.setMass(Double.parseDouble(iterator.next()));
+        } catch (NoSuchElementException e) {
+            System.out.println("Error loading Arrays, file did not contain enough lines to fully specify fields.");
+        }
         return arr;
     }
 
@@ -77,11 +91,16 @@ public class SavingManager {
     // EFFECTS: Generates a Battery instance with specification based on save file
     public static Battery loadBattery(@NotNull File file) {
         Battery bat = new Battery();
-        List<String> fileContents = readFile(file);
-        bat.setMaxCurrent(Double.parseDouble(fileContents.iterator().next()));
-        bat.setOutVoltage(Double.parseDouble(fileContents.iterator().next()));
-        bat.setCapacity(Double.parseDouble(fileContents.iterator().next()));
-        bat.setMass(Double.parseDouble(fileContents.iterator().next()));
+        try {
+            List<String> fileContents = readFile(file);
+            Iterator<String> iterator = fileContents.iterator();
+            bat.setMaxCurrent(Double.parseDouble(iterator.next()));
+            bat.setOutVoltage(Double.parseDouble(iterator.next()));
+            bat.setCapacity(Double.parseDouble(iterator.next()));
+            bat.setMass(Double.parseDouble(iterator.next()));
+        } catch (NoSuchElementException e) {
+            System.out.println("Error loading Battery, file did not contain enough lines to fully specify fields.");
+        }
         return bat;
     }
 
@@ -89,13 +108,18 @@ public class SavingManager {
     // EFFECTS: Generates a Motor instance with specification based on save file
     public static Motor loadMotor(@NotNull File file) {
         Motor motor = new Motor();
-        List<String> fileContents = readFile(file);
-        motor.setNominalVoltage(Double.parseDouble(fileContents.iterator().next()));
-        motor.setPeakPower(Double.parseDouble(fileContents.iterator().next()));
-        motor.setContinuousPower(Double.parseDouble(fileContents.iterator().next()));
-        motor.setNoLoadSpeed(Double.parseDouble(fileContents.iterator().next()));
-        motor.setPeakTorque(Double.parseDouble(fileContents.iterator().next()));
-        motor.setMass(Double.parseDouble(fileContents.iterator().next()));
+        try {
+            List<String> fileContents = readFile(file);
+            Iterator<String> iterator = fileContents.iterator();
+            motor.setNominalVoltage(Double.parseDouble(iterator.next()));
+            motor.setPeakPower(Double.parseDouble(iterator.next()));
+            motor.setContinuousPower(Double.parseDouble(iterator.next()));
+            motor.setNoLoadSpeed(Double.parseDouble(iterator.next()));
+            motor.setPeakTorque(Double.parseDouble(iterator.next()));
+            motor.setMass(Double.parseDouble(iterator.next()));
+        } catch (NoSuchElementException e) {
+            System.out.println("Error loading Motor, file did not contain enough lines to fully specify fields.");
+        }
         return motor;
     }
 
@@ -103,9 +127,14 @@ public class SavingManager {
     // EFFECTS: Generates a Wheel instance with specification based on save file
     public static Wheel loadWheels(@NotNull File file) {
         Wheel wh = new Wheel();
-        List<String> fileContents = readFile(file);
-        wh.setRadius(Double.parseDouble(fileContents.iterator().next()));
-        wh.setMass(Double.parseDouble(fileContents.iterator().next()));
+        try {
+            List<String> fileContents = readFile(file);
+            Iterator<String> iterator = fileContents.iterator();
+            wh.setRadius(Double.parseDouble(iterator.next()));
+            wh.setMass(Double.parseDouble(iterator.next()));
+        } catch (NoSuchElementException e) {
+            System.out.println("Error loading Wheel, file did not contain enough lines to fully specify fields.");
+        }
         return wh;
     }
 
@@ -113,13 +142,18 @@ public class SavingManager {
     // EFFECTS: Generates a list of PoweredComponent with individual specification based on save file
     public static List<PoweredComponent> loadComponents(@NotNull File file) {
         List<PoweredComponent> components = new LinkedList<>();
-        List<String> fileContents = readFile(file);
-        while (fileContents.iterator().hasNext()) {
-            PoweredComponent c = new PoweredComponent();
-            c.setName(fileContents.iterator().next());
-            c.setPowerDraw(Double.parseDouble(fileContents.iterator().next()));
-            c.setMass(Double.parseDouble(fileContents.iterator().next()));
-            components.add(c);
+        try {
+            List<String> fileContents = readFile(file);
+            Iterator<String> iterator = fileContents.iterator();
+            while (fileContents.iterator().hasNext()) {
+                PoweredComponent c = new PoweredComponent();
+                c.setName(iterator.next());
+                c.setPowerDraw(Double.parseDouble(iterator.next()));
+                c.setMass(Double.parseDouble(iterator.next()));
+                components.add(c);
+            }
+        } catch (NoSuchElementException e) {
+            System.out.println("Error loading PoweredComponents.");
         }
         return components;
     }
@@ -128,6 +162,17 @@ public class SavingManager {
 
     // EFFECTS: Saves primitive car fields in text file and saves subcomponent specifications in their own files.
     public static void saveCar(@NotNull SolarCar car) {
+        saveSolarCar(car);
+        saveAeroShell(car.getAeroShell());
+        saveArrays(car.getArrays());
+        saveBattery(car.getBattery());
+        saveMotor(car.getMotor());
+        saveComponents(car.getComponents());
+        saveWheels(car.getWheels());
+    }
+
+    // EFFECTS: Saves solar car's name to file
+    public static void saveSolarCar(@NotNull SolarCar car) {
         File solarCar = makeSaveFile(car);
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(solarCar));
@@ -140,13 +185,6 @@ public class SavingManager {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        saveAeroShell(car.getAeroShell());
-        saveArrays(car.getArrays());
-        saveBattery(car.getBattery());
-        saveMotor(car.getMotor());
-        saveComponents(car.getComponents());
-        saveWheels(car.getWheels());
     }
 
     // EFFECTS: Saves specification of a particular AeroShell instance
@@ -307,7 +345,7 @@ public class SavingManager {
     public static List<String> readFile(@NotNull File file) {
         List<String> contents = new LinkedList<>();
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(file.getName()));
+            BufferedReader reader = new BufferedReader(new FileReader(file));
             String line;
             while ((line = reader.readLine())!= null) contents.add(line.trim());
             reader.close();
@@ -319,6 +357,6 @@ public class SavingManager {
 
     // EFFECTS: Makes a new file in saveDirectory with name matching toSave class name
     public static File makeSaveFile(@NotNull Object toSave) {
-        return new File(saveDirectory.getPath() + "/" + getClassName(toSave));
+        return new File(saveDirectory.getPath() + "/" + getClassName(toSave) + ".txt");
     }
 }

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.EditWheelsScreenController">
+   <children>
+      <GridPane layoutX="38.0" layoutY="292.0" prefHeight="72.0" prefWidth="359.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="119.0" minWidth="10.0" prefWidth="101.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="147.0" minWidth="10.0" prefWidth="118.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="144.0" minWidth="10.0" prefWidth="140.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Wheel Radius:" />
+            <Label text="Wheel Mass:" GridPane.rowIndex="1" />
+            <Label fx:id="radius" text="&lt;&lt;Old Radius&gt;&gt;" GridPane.columnIndex="1">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="mass" text="&lt;&lt;Old Mass&gt;&gt;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <TextField fx:id="newRadius" prefHeight="25.0" prefWidth="134.0" GridPane.columnIndex="2" />
+            <TextField fx:id="newMass" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+         </children>
+      </GridPane>
+      <Label layoutX="144.0" layoutY="267.0" text="Old Values:" />
+      <ImageView fitHeight="200.0" fitWidth="371.0" layoutX="48.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" />
+      <Label layoutX="259.0" layoutY="267.0" text="New Values (Optional):" />
+      <Button layoutX="536.0" layoutY="352.0" mnemonicParsing="false" onAction="#handleQuit" text="Quit" />
+      <Button fx:id="save" layoutX="479.0" layoutY="352.0" mnemonicParsing="false" onAction="#handleSave" text="Save" />
+      <Label layoutX="24.0" layoutY="26.0" text="Wheel Specifications">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
